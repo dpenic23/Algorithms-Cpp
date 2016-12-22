@@ -63,6 +63,18 @@ polynomial polynomials_add(polynomial& p1, polynomial& p2){
 
 }
 
+polynomial polynomial_mul(polynomial &p1, polynomial &p2){
+    
+    polynomial result;
+    int index1 = 0;
+    int index2 = 0;
+
+    
+
+    return result;
+
+}
+
 void polynomial_write(polynomial &p){
     
     for(int i = 0; i < p.size(); i++){

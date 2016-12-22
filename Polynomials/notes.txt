@@ -1,0 +1,9 @@
+Algorithms related to the manipulation with polynomials
+
+A single polynomial can be represented with an array but if it has a lot of coefficients equal to 0
+(ex. p(x) = 1 + x^1000) then it is, regarding the memory, more efficient to represent the polynomial
+with the linked list. A particular item in the list contains the coefficient and the corresponding 
+power.
+This method can be used for matrices as well (sparse matrix).
+
+Polynomials can also be in the following form: r0(x-r1)(x-r2)...(x-rN)
