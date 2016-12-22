@@ -1,0 +1,13 @@
+Euclid's algorithm (Euclidean algorithm)
+
+Algorithm for computing the greatest common divisor of two numbers, the largest number that divides both
+of them without leaving a remainder.
+
+The algorithm is based on the principle that the greatest common divisor of two numbers does not change 
+if the larger number is replaced by its difference with the smaller number.
+
+Time complexity: log(x + y), where x and y are input numberd. 
+
+Least common multiple (LCM):
+		
+		LCM(x, y) = (x * y) / GCD(x, y)
