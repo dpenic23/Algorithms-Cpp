@@ -2,6 +2,7 @@
 #include<fstream>
 #include<sstream>
 #include<vector>
+#include<algorithm>
 
 using namespace std;
 
@@ -63,13 +64,47 @@ polynomial polynomials_add(polynomial& p1, polynomial& p2){
 
 }
 
-polynomial polynomial_mul(polynomial &p1, polynomial &p2){
+bool sortPolynomial(poly_item item1, poly_item item2){
+    return item1.power < item2.power;
+}
+
+// The algorithm can be boosted by using hash map
+// for memorizing the powers (O(N^2)). Now the time
+// complexity is O(N^2).
+polynomial polynomials_mul(polynomial &p1, polynomial &p2){
     
     polynomial result;
-    int index1 = 0;
-    int index2 = 0;
+       
+    for(int i = 0; i < p1.size(); i++){
+        for(int j = 0; j < p2.size(); j++){
+            int coeff = p1[i].coefficient * p2[j].coefficient;
+            int pow = p1[i].power + p2[j].power;
+            bool found = false;
+            
+            for(int k = 0; k < result.size(); k++){
+                if(result[k].power == pow){
+                    result[k].coefficient += coeff;
+                    found = true;
+                    break;
+                }
+            }
+            
+            if(!found){
+                poly_item item(coeff, pow);
+                result.push_back(item);
+            }
+        }
+    }
 
-    
+    for(int i = 0; i < result.size(); i++){
+        if(result[i].coefficient == 0){
+            for(int j = i + 1; j < result.size(); j++){
+                result[j - 1] = result[j];
+            }
+        }
+    }
+
+    sort(result.begin(), result.end(), sortPolynomial);
 
     return result;
 
@@ -124,7 +159,11 @@ int main(){
         }
     }
 
-    polynomial result = polynomials_add(p1, p2);
+    polynomial_write(p1);
+    polynomial_write(p2);
+    
+    //polynomial result = polynomials_add(p1, p2);
+    polynomial result = polynomials_mul(p1, p2);
     polynomial_write(result);
     
     return 0;
