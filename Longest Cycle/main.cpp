@@ -1,3 +1,8 @@
+/*
+ * Domagoj Penić
+ * 0036477119
+*/
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
