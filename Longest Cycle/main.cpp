@@ -1,7 +1,7 @@
 /*
  * Domagoj Penić
  * 0036477119
-*/
+ */
 
 #include <iostream>
 #include <fstream>
@@ -10,27 +10,26 @@
 
 using namespace std;
 
+int num_of_nodes;
 vector< vector<int> > adjacency_matrix;
 
-int main(int argc, char* argv[]){
+/*
+ * Function takes absolute path to the file where the adjacency matrix
+ * is stored and reads the data into the previously allocated memory.
+ * Function returns 1 if the reading went successfully, 0 otherwise.
+ */
+int read_matrix(char* path){
 
-	// First argument is the program name and second one is a file path
-	if(argc != 2){
-		printf("Invalid number of command line arguments.\n");
-		return 0;
-	}
-
-	// Path to the input file
-    ifstream input(argv[1]);
+	ifstream input(path);
 
 	if(!input){
-		printf("Error while reading from file.\n");
 		return 0;
 	}
-
-	int num_of_nodes;
+	
+	// Read the total number of nodes
 	input >> num_of_nodes;
 
+	// Read the adjacency matrix
 	for(int i = 0; i < num_of_nodes; i++){
 		vector<int> adjacency_vector;
 
@@ -46,12 +45,32 @@ int main(int argc, char* argv[]){
 		adjacency_matrix.push_back(adjacency_vector);
 	}
 
-	for(int i = 0; i < num_of_nodes; i++){
-		for(int j = 0; j < adjacency_matrix[i].size(); j++){
-			cout << adjacency_matrix[i][j];
-		}
-		cout << endl;
+	return 1;
+}
+
+int longest_cycle(){
+	return 0;
+}
+
+/*
+ * Main function, called once the program is run. The program takes
+ * only one argument, absolute path to the file where the adjacency
+ * matrix is stored.
+ */
+int main(int argc, char* argv[]){
+
+	if(argc != 2){
+		printf("Invalid number of command line arguments.\n");
+		return 0;
 	}
+
+	if(!read_matrix(argv[1])){
+		printf("Error occurred while reading from file.\n");
+		return 0;
+	}
+
+	int result = longest_cycle();
+	cout << result << endl;
 
     return 0;
 
