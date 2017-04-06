@@ -67,7 +67,7 @@ int read_matrix(char* path){
 
 	for(int i = 0; i < neighbours.size(); i++){
 		bool is_visited = visited.find(neighbours[i]) != visited.end();
-		if(!is_visited || neighbours[i] == start_node){
+		if(!is_visited || (neighbours[i] == start_node && length > 1)){
 			cycle_rec(start_node, neighbours[i], visited, length + 1);
 		}
 	}
